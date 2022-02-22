@@ -1,3 +1,5 @@
+Controller -
+
 using WebApp_Core5.Model;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,3 +40,83 @@ namespace WebApp_Core5.controller
 
     
 }
+
+Views -->
+
+Layout View -->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
+
+Details View -->
+@model WebApp_Core5.ViewModels.HomeDetailsViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Employee List";
+ }
+
+<body>
+    <h3>@Model.PageTitle</h3>
+
+    <div>
+       Id : @Model.Employee.Id
+    </div>
+    <div>
+       Name : @Model.Employee.Name
+    </div>
+    <div>
+       Deapartment : @Model.Employee.Departmennt
+    </div>
+    <div>
+       Email : @Model.Employee.Email
+    </div>
+
+</body>
+  
+  Index View -->
+  
+  @model IEnumerable<WebApp_Core5.Model.Employee>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Employee List";
+ }
+
+<body>
+    <table>
+        <thead>
+           <tr>
+             <th>Id</th>
+             <th>Name</th>
+             <th>Department</th>
+             <th>Email</th>
+           </tr>
+         </thead>
+    <tbody>
+
+      @foreach(var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.Departmennt</td>
+                   <td>@employee.Email</td>
+           </tr>                
+            }
+
+  </tbody>
+</table>
+</body>
+                         
